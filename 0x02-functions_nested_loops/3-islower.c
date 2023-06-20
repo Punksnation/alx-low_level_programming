@@ -3,7 +3,7 @@
 /**
  * _islower - checks if input is lowercase
  * @c: variable to determine if input is lowercase
- * main - uses a built in function
+ * main - uses a  built in function
  * Return: 0 if succesful
  */
 
