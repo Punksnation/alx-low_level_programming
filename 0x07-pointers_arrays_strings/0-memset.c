@@ -6,7 +6,7 @@ include "main.h"
  * @b: value that will replace
  * @n: number of bytes to change
  * Return: changed pointer
- **/
+ */
 
 char *_memset(char *s, char b, unsigned int n)
 {
