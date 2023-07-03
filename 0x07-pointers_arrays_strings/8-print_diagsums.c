@@ -19,4 +19,4 @@ void print_diagsums(int *a, int size)
 		valuerglf += *(p + rglf);
 	}
 	printf("%d, %d\n", valuelfrg, valuergl)
-
+}
