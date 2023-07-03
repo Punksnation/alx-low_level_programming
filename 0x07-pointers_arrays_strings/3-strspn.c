@@ -1,4 +1,5 @@
 #include "man.h"
+#include <stdio.h>
 
 /**
  * _strspn - compute length of matching contiguous bytes
