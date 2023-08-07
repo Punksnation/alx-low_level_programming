@@ -3,12 +3,12 @@
 /**
  * read_textfile - reads a file and writes it to stdout
  * @filename: name of the file to read
- * @letters: number of characters to read/write
- * Return: number of characters read/written
+ * @letters: number of characters that need to read/written
+ * Return: number of characters that  read/written
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t read_count, write_count, fd;
+	ssize_t rd_cnt, w_count, fd;
 	char *buffer;
 
 	if (!filename || letters == 0)
@@ -22,16 +22,16 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fd);
 		return (0);
 	}
-	read_count = read(fd, buffer, letters);
+	rd_cnt = read(fd, buffer, letters);
 	close(fd);
-	if (read_count <= 0)
+	if (rd_cnt <= 0)
 	{
 		free(buffer);
 		return (0);
 	}
-	write_count = write(STDOUT_FILENO, buffer, read_count);
+	_count = write(STDOUT_FILENO, buffer, rd_cnt);
 	free(buffer);
-	if (write_count < 0)
+	if (w_count < 0)
 		return (0);
-	return (write_count);
+	return (w_count);
 }
