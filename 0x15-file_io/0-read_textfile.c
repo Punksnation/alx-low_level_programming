@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * read_textfile - reads a file and writes it to stdout
@@ -6,32 +7,40 @@
  * @letters: number of characters that need to read/written
  * Return: number of characters that  read/written
  */
+
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t rd_cnt, w_count, fd;
-	char *buffer;
+	char *buff;
+	int of;
+	size_t lRead, check;
 
-	if (!filename || letters == 0)
+	if (!filename || !letters)
 		return (0);
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+
+	buff = malloc(letters);
+	if (!buff)
 		return (0);
-	buffer = malloc(letters);
-	if (buffer == NULL)
+	/* open file */
+	of = open(filename, O_RDONLY);
+	if (of == -1)
 	{
-		close(fd);
+		free(buff);
 		return (0);
 	}
-	rd_cnt = read(fd, buffer, letters);
-	close(fd);
-	if (rd_cnt <= 0)
+	lRead = read(of, buff, letters);
+	if (lRead < 1)
 	{
-		free(buffer);
+		free(buff);
+		close(of);
 		return (0);
 	}
-	_count = write(STDOUT_FILENO, buffer, rd_cnt);
-	free(buffer);
-	if (w_count < 0)
+	check = write(STDOUT_FILENO, buff, lRead);
+
+	free(buff);
+	close(of);
+
+	if (!check || check != lRead)
 		return (0);
-	return (w_count);
+
+	return (lRead);
 }
